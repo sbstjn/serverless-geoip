@@ -1,0 +1,21 @@
+{
+  "name": "serverless-geoip",
+  "version": "1.0.0",
+  "description": "Use MaxMind GeoLite2 database with AWS Lambda and serverless",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "sls deploy"
+  },
+  "keywords": [
+    "serverless",
+    "geoip"
+  ],
+  "author": "Sebastian Müller <mail@sbstjn.com>",
+  "license": "MIT",
+  "dependencies": {
+    "mmdb-reader": "^1.1.0"
+  },
+  "devDependencies": {
+    "serverless": "^1.24.0"
+  }
+}
