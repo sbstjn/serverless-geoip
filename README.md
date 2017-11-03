@@ -22,7 +22,7 @@ $ > yarn deploy
 …
 
 endpoints:
-  GET - https://randomid.execute-api.us-east-1.amazonaws.com/dev/lookup
+  GET - https://randomid.execute-api.us-east-1.amazonaws.com/dev/ip/{ip}
 ```
 
 ## Usage
@@ -48,7 +48,7 @@ $ > sls invoke -f lookup --data '{ "ip": "8.8.8.8" }'
 ### HTTP Request
 
 ```bash
-$ > curl https://randomid.execute-api.us-east-1.amazonaws.com/dev/lookup?ip=8.8.8.8
+$ > curl https://randomid.execute-api.us-east-1.amazonaws.com/dev/ip/8.8.8.8
 
 {"continent":{"code":"NA","geoname_id":6255149,"names":{"de":"Nordamerika","en":"North America", …
 ```

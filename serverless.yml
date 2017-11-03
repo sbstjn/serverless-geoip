@@ -3,8 +3,8 @@ service: serverless-geoip
 provider:
   name: aws
   runtime: nodejs6.10
-  memorySize: 128
-  timeout: 120
+  memorySize: 256
+  timeout: 30
   region: us-east-1
 
 package:
@@ -21,14 +21,18 @@ package:
 functions:
   lookup:
     handler: src/lookup.run
-    timeout: 120
-    memorySize: 128
-
-  http:
-    handler: src/http.run
-    memorySize: 128
-    timeout: 120
     events:
       - http:
           method: GET
-          path: /lookup
+          path: /ip/{ip}
+          integration: lambda
+          request:
+            parameters:
+              paths:
+                ip: true
+            template:
+              application/json: '{ "ip" : "$input.params(''ip'')" }'
+          response:
+            headers:
+              Content-Type: "'application/json'"
+            template: $input.json('$')
