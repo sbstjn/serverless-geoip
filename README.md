@@ -14,6 +14,12 @@ $ > yarn install
 
 Download the [GeoLite2 City](http://dev.maxmind.com/geoip/geoip2/geolite2/) database and store the file inside the `data` folder.
 
+```bash
+.
+└── data
+    └── GeoLite2-City.mmdb
+```
+
 ## Deploy 
 
 ```bash
