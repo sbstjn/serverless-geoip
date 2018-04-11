@@ -22,6 +22,16 @@ Download the [GeoLite2 City](http://dev.maxmind.com/geoip/geoip2/geolite2/) data
 
 ## Deploy 
 
+### Install serverless-domain-manager
+[Find it here](https://securitycw.atlassian.net/wiki/spaces/DEV/pages/32571396/Serverless#Serverless-Serverless-domain-manager)
+Run 
+```bash
+serverless create-domain
+```
+Wait 40 minutes for domain to create if it's new
+
+### yarn deploy
+
 ```bash
 $ > yarn deploy
 
@@ -32,6 +42,7 @@ endpoints:
 ```
 
 ## Usage
+
 
 ### Invoke
 
