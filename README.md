@@ -2,6 +2,16 @@
 
 Use AWS Lambda and [MaxMind GeoLite](http://dev.maxmind.com/geoip/geoip2/geolite2/) to query for locations of IP addresses. You can invoke the function or use API Gateway to send an HTTP request with the IP address to lookup.
 
+## Why
+Since FreeGeoIP has deprecated their [free api](https://github.com/apilayer/freegeoip#readme), we decided to implement this in lambda.
+
+```bash
+curl \
+-H "Content-Type: application/json" \
+https://geoip.scw.video/ip/172.217.8.206
+```
+
+Feel free to utilize our api endpoint hosted by [security-camera-warehouse.com](https://www.security-camera-warehouse.com/)
 ## Install
 
 ```bash
