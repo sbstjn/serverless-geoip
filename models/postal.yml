@@ -1,0 +1,11 @@
+name: "postal"
+description: "a postal object returned from api"
+#contentType: "application/json"
+schema:
+  type: object
+  properties:
+    code:
+      type: string
+    confidence:
+      type: integer
+      format: int64

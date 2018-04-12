@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "serverless": "^1.24.0",
+    "serverless-aws-documentation": "^1.0.1",
     "serverless-domain-manager": "^2.3.6"
   }
 }

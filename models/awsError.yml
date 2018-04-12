@@ -1,0 +1,10 @@
+name: "awsError"
+description: "an aws internal server error, usually with status code 502 (bad gateway)"
+contentType: "application/json"
+schema:
+  type: object
+  properties:
+    message:
+      type: string
+  required:
+    - message

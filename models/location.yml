@@ -1,0 +1,26 @@
+name: "location"
+description: "a location object returned from api"
+#contentType: "application/json"
+schema:
+  type: object
+  properties:
+    accuracy_radius:
+      type: integer
+      format: int32
+    average_income:
+      type: integer
+      format: int64
+    latitude:
+      type: integer
+      format: int64
+    longitude:
+      type: integer
+      format: int64
+    metro_code:
+      type: integer
+      format: int32
+    population_density:
+      type: integer
+      format: int32
+    time_zone:
+      type: string

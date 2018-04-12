@@ -22,8 +22,10 @@ Download the [GeoLite2 City](http://dev.maxmind.com/geoip/geoip2/geolite2/) data
 
 ## Deploy 
 
-### Install serverless-domain-manager
-[Find it here](https://securitycw.atlassian.net/wiki/spaces/DEV/pages/32571396/Serverless#Serverless-Serverless-domain-manager)
+### Dependencies
+[serverless-domain-manager](https://securitycw.atlassian.net/wiki/spaces/DEV/pages/32571396/Serverless#Serverless-Serverless-domain-manager)
+[serverless-aws-documentation](https://securitycw.atlassian.net/wiki/spaces/DEV/pages/32571396/Serverless#Serverless-Serverless-aws-documentation)
+
 Run 
 ```bash
 serverless create-domain
@@ -68,4 +70,9 @@ $ > sls invoke -f lookup --data '{ "ip": "8.8.8.8" }'
 $ > curl https://randomid.execute-api.us-east-1.amazonaws.com/dev/ip/8.8.8.8
 
 {"continent":{"code":"NA","geoname_id":6255149,"names":{"de":"Nordamerika","en":"North America", …
+```
+
+### Remove Domain with
+```bash
+serverless delete_domain
 ```

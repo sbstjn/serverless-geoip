@@ -1,0 +1,12 @@
+name: "continent"
+description: "a continent object returned from api"
+#contentType: "application/json"
+schema:
+  type: object
+  properties:
+    code:
+      type: string
+    geoname_id:
+      type: integer
+      format: int32
+    names: ${file(models/names.yml):schema}

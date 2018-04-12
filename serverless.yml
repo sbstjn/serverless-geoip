@@ -18,15 +18,40 @@ package:
     - yarn.lock
     - package.json
     - package-lock.json
+    - swagger/**
 
 functions:
   lookup:
     handler: src/lookup.run
     events:
-      - http:
+      - 
+        http:
           method: GET
           path: /ip/{ip}
           integration: lambda
+          cors: true
+          #private: true
+          documentation:
+            summary: "pass in an ip address string and return an ip object with location information on the ip address"
+            requestBody:
+              description: 'body containing ip address string, {"ip": "8.8.8.8"} or ip/8.8.8.8'
+            requestModels:
+              "application/json": "ipRequest"
+            pathParams:
+              -
+                name: "ip"
+                description: "ip address string"
+            methodResponses:
+              -
+                statusCode: "200"
+                responseBody:
+                  description: "an ip address object"
+                responseModels:
+                  "application/json": "ipResponse"
+              -
+                statusCode: "502"
+                responseModels:
+                  "application/json": "awsError"
           request:
             parameters:
               paths:
@@ -39,6 +64,7 @@ functions:
             template: $input.json('$')
 plugins:
   - serverless-domain-manager
+  - serverless-aws-documentation
 
 custom:
   customDomain:
@@ -48,3 +74,18 @@ custom:
     certificateName: '*.scw.video'
     createRoute53Record: true
     endpointType: 'edge'
+  documentation:
+    api:
+      info:
+        version: '1'
+        summary: 'geolite geoip api'
+        description: ' endpoint for internal geoip lookups'
+    resources:
+      -
+        path: "ip/{ip}"
+        description: "path used to query information on an ip address"
+    models:
+      - ${file(models/ip.yml)}
+      - ${file(models/ipResponse.yml)}
+      - ${file(models/ipRequest.yml)}
+      - ${file(models/awsError.yml)}

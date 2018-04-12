@@ -1,0 +1,13 @@
+name: "city"
+description: "a city object returned from api"
+##contentType: "application/json"
+schema:
+  type: object
+  properties:
+    confidence:
+      type: integer
+      format: int32
+    geoname_id:
+      type: integer
+      format: int32
+    names: ${file(models/names.yml):schema}
