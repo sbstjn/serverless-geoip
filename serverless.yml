@@ -32,15 +32,11 @@ functions:
           cors: true
           #private: true
           documentation:
-            summary: "pass in an ip address string and return an ip object with location information on the ip address"
-            requestBody:
-              description: 'body containing ip address string, {"ip": "8.8.8.8"} or ip/8.8.8.8'
-            requestModels:
-              "application/json": "ipRequest"
+            summary: "pass in an ip address and return an ip object with location information on the ip address"
             pathParams:
               -
                 name: "ip"
-                description: "ip address string"
+                description: "public ip address you want to return geoip data on"
             methodResponses:
               -
                 statusCode: "200"
@@ -87,5 +83,4 @@ custom:
     models:
       - ${file(models/ip.yml)}
       - ${file(models/ipResponse.yml)}
-      - ${file(models/ipRequest.yml)}
       - ${file(models/awsError.yml)}

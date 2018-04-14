@@ -3,3 +3,4 @@
 data/*.mmdb
 node_modules
 package-lock.json
+yarn-error.log
