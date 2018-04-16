@@ -24,19 +24,29 @@ functions:
   lookup:
     handler: src/lookup.run
     events:
-      - 
-        http:
-          method: GET
-          path: /ip/{ip}
+      -  http:
+          path: ip/{ip}
+          method: get
           integration: lambda
           cors: true
           #private: true
+          request:
+            parameters:
+              paths:
+                ip: true
+          response:
+            headers:
+              Content-Type: "'application/json'"
+            template: $input.json('$')
           documentation:
             summary: "pass in an ip address and return an ip object with location information on the ip address"
             pathParams:
               -
                 name: "ip"
                 description: "public ip address you want to return geoip data on"
+                required: true
+                schema:
+                  type: string
             methodResponses:
               -
                 statusCode: "200"
@@ -48,16 +58,6 @@ functions:
                 statusCode: "502"
                 responseModels:
                   "application/json": "awsError"
-          request:
-            parameters:
-              paths:
-                ip: true
-            template:
-              application/json: '{ "ip" : "$input.params(''ip'')" }'
-          response:
-            headers:
-              Content-Type: "'application/json'"
-            template: $input.json('$')
 plugins:
   - serverless-domain-manager
   - serverless-aws-documentation
