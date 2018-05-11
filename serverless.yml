@@ -19,6 +19,7 @@ package:
     - package.json
     - package-lock.json
     - swagger/**
+    - node_modules/aws-sdk/**
 
 functions:
   lookup:
