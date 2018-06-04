@@ -1,0 +1,11 @@
+name: "represented_country"
+description: "a represented_country object returned from api"
+#contentType: "application/json"
+schema:
+  type: object
+  properties:
+    iso_code:
+      type: string
+    names: ${file(models/names.yml):schema}
+    type:
+      type: string

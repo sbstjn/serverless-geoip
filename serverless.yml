@@ -3,9 +3,10 @@ service: serverless-geoip
 provider:
   name: aws
   runtime: nodejs6.10
-  memorySize: 256
+  memorySize: 512
   timeout: 30
   region: us-east-1
+  stage: prod
 
 package:
   exclude:
@@ -17,22 +18,70 @@ package:
     - yarn.lock
     - package.json
     - package-lock.json
+    - swagger/**
+    - node_modules/aws-sdk/**
 
 functions:
   lookup:
     handler: src/lookup.run
     events:
-      - http:
-          method: GET
-          path: /ip/{ip}
+      -  http:
+          path: ip/{ip}
+          method: get
           integration: lambda
+          cors: true
+          #private: true
           request:
             parameters:
               paths:
                 ip: true
-            template:
-              application/json: '{ "ip" : "$input.params(''ip'')" }'
           response:
             headers:
               Content-Type: "'application/json'"
             template: $input.json('$')
+          documentation:
+            summary: "pass in an ip address and return an ip object with location information on the ip address"
+            pathParams:
+              -
+                name: "ip"
+                description: "public ip address you want to return geoip data on"
+                required: true
+                schema:
+                  type: string
+            methodResponses:
+              -
+                statusCode: "200"
+                responseBody:
+                  description: "an ip address object"
+                responseModels:
+                  "application/json": "ipResponse"
+              -
+                statusCode: "502"
+                responseModels:
+                  "application/json": "awsError"
+plugins:
+  - serverless-domain-manager
+  - serverless-aws-documentation
+
+custom:
+  customDomain:
+    domainName: geoip.scw.video
+    stage: prod
+    basePath:
+    certificateName: '*.scw.video'
+    createRoute53Record: true
+    endpointType: 'edge'
+  documentation:
+    api:
+      info:
+        version: '1'
+        summary: 'geolite geoip api'
+        description: ' endpoint for internal geoip lookups'
+    resources:
+      -
+        path: "ip/{ip}"
+        description: "path used to query information on an ip address"
+    models:
+      - ${file(models/ip.yml)}
+      - ${file(models/ipResponse.yml)}
+      - ${file(models/awsError.yml)}

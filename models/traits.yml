@@ -1,0 +1,25 @@
+name: "traits"
+description: "a traits object returned from api"
+#contentType: "application/json"
+schema:
+  type: object
+  properties:
+    autonomous_system_number:
+      type: integer
+      format: int64
+    autonomous_system_organization:
+      type: string
+    domain:
+      type: string
+    is_anonymous_proxy:
+      type: boolean
+    is_satellite_provider:
+      type: boolean
+    isp:
+      type: string
+    ip_address:
+      type: string
+    organization:
+      type: string
+    user_type:
+      type: string

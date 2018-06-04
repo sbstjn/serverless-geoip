@@ -1,0 +1,6 @@
+name: ipResponse
+description: "default ip response"
+contentType: "application/json"
+schema:
+  type: object
+  properties: ${file(models/ip.yml):schema.properties}

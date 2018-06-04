@@ -1,0 +1,145 @@
+---
+swagger: "2.0"
+info:
+  description: " endpoint for internal geoip lookups"
+  version: "2018-04-12T00:06:32Z"
+  title: "prod-serverless-geoip"
+host: "geoip.scw.video"
+schemes:
+- "https"
+paths:
+  /ip/{ip}:
+    get:
+      summary: "pass in an ip address string and return an ip object with location\
+        \ information on the ip address"
+      consumes:
+      - "application/json"
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "ip"
+        in: "path"
+        description: "ip address string"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "ipRequest"
+        description: "body containing ip address string, {\"ip\": \"8.8.8.8\"} or\
+          \ ip/8.8.8.8"
+        required: true
+        schema:
+          $ref: "#/definitions/ipRequest"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ipResponse"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Content-Type:
+              type: "string"
+        422:
+          description: "422 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Content-Type:
+              type: "string"
+        400:
+          description: "400 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Content-Type:
+              type: "string"
+        500:
+          description: "500 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Content-Type:
+              type: "string"
+        401:
+          description: "401 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Content-Type:
+              type: "string"
+        502:
+          description: "502 response"
+          schema:
+            $ref: "#/definitions/awsError"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Content-Type:
+              type: "string"
+        403:
+          description: "403 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Content-Type:
+              type: "string"
+        404:
+          description: "404 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Content-Type:
+              type: "string"
+        504:
+          description: "504 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Content-Type:
+              type: "string"
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Credentials:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+definitions:
+  ipRequest:
+    type: "object"
+    required:
+    - "text"
+    properties:
+      text:
+        type: "string"
+        format: "string"
+    description: "a simple request model for ip/{ip}"
+  ipResponse:
+    type: "object"
+    required:
+    - "text"
+    properties:
+      text:
+        type: "string"
+        format: "string"
+    description: "default ip response"
+  awsError:
+    type: "object"
+    required:
+    - "message"
+    properties:
+      message:
+        type: "string"
+    description: "an aws internal server error, usually with status code 502 (bad\
+      \ gateway)"

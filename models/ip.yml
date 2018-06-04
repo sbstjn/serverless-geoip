@@ -1,0 +1,29 @@
+name: "ip"
+description: "a ip object returned from api at /ip/{ip}"
+contentType: "application/json"
+schema:
+  type: object
+  properties:
+    city: ${file(models/city.yml):schema}
+    continent: ${file(models/continent.yml):schema}
+    country: ${file(models/country.yml):schema}
+    location: ${file(models/location.yml):schema}
+    postal: ${file(models/postal.yml):schema}
+    registered_country: ${file(models/registered_country.yml):schema}
+    represented_country: ${file(models/represented_country.yml):schema}
+    subdivisions: 
+        type: array
+        items: ${file(models/subdivisions.yml):schema}
+    traits: ${file(models/traits.yml):schema}
+    maxmind: ${file(models/maxmind.yml):schema}
+  required:
+    - city
+    - continent
+    - country
+    - location
+    - postal
+    - registered_country
+    - represented_country
+    - subdivisions
+    - traits
+    - maxmind

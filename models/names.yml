@@ -1,0 +1,22 @@
+name: "names"
+description: "a names object with localized names"
+#contentType: "application/json"
+schema:
+  type: object
+  properties:
+    de:
+      type: string
+    en:
+      type: string
+    es:
+      type: string
+    fr:
+      type: string
+    ja:
+      type: string
+    pt-BR:
+      type: string
+    ru:
+      type: string
+    zh-CN:
+      type: string

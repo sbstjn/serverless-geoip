@@ -1,0 +1,9 @@
+name: "maxmind"
+description: "a maxmind object returned from api"
+#contentType: "application/json"
+schema:
+  type: object
+  properties:
+    queries_remaining:
+      type: integer
+      format: int64

@@ -1,0 +1,12 @@
+name: "registered_country"
+description: "a registered_country object returned from api"
+#contentType: "application/json"
+schema:
+  type: object
+  properties:
+    geoname_id:
+      type: integer
+      format: int64
+    iso_code:
+      type: string
+    names: ${file(models/names.yml):schema}
